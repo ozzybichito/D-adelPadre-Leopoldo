@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el Mejor Papá</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+        }
+        .font-dancing-script {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* --- Estilo Deluxe Metálico --- */
+        .card-deluxe {
+            background: linear-gradient(145deg, #a88d3d, #f0e68c, #a88d3d);
+            border-top-color: #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-deluxe::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(110deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 60%);
+            transform: skewX(-25deg);
+            animation: cardShine 6s infinite linear;
+        }
+
+        @keyframes cardShine {
+            from { left: -150%; }
+            to { left: 150%; }
+        }
+
+
+        /* ---- Animaciones ---- */
+        .reveal-block-animation {
+            animation: revealBlock 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+        }
+        @keyframes revealBlock {
+            from { opacity: 0; clip-path: inset(0 100% 0 0); }
+            to { opacity: 1; clip-path: inset(0 0 0 0); }
+        }
+        .fade-in-start { animation: fadeInStart 1.5s ease-in-out forwards; }
+        @keyframes fadeInStart { from { opacity: 0; } to { opacity: 1; } }
+        
+        .fade-out-exit { animation: fadeOutExit 1s forwards; }
+        @keyframes fadeOutExit { to { opacity: 0; transform: scale(0.9); visibility: hidden; } }
+
+        .superman-fly { animation: fly 1.5s infinite ease-in-out; }
+        @keyframes fly { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-5px); } }
+
+        .photo-reveal-animation {
+            animation: photoReveal 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+        @keyframes photoReveal {
+            from { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        .card-close-animation { animation: cardClose 1s ease-in forwards; }
+        @keyframes cardClose { to { opacity: 0; transform: scale(0.8); visibility: hidden; } }
+
+        /* Animación para el sobre final */
+        #envelope-overlay {
+            animation: fadeInStart 1s forwards, fadeOutExit 1s 2s forwards;
+        }
+
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-200 via-slate-400 to-slate-500 min-h-screen flex items-center justify-center p-4 overflow-x-hidden">
+
+    <!-- Música de fondo actualizada -->
+    <audio id="background-music" loop>
+        <source src="https://ia600704.us.archive.org/1/items/mi-viejo-remix-vicente-fernandez-letra_202506/MI%20VIEJO%20Remix-%20Vicente%20Fern%C3%A1ndez%20-%20%28LETRA%29.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Pantalla de Inicio -->
+    <div id="introContainer" class="text-center fade-in-start w-full max-w-md mx-auto">
+        <h1 class="font-dancing-script text-4xl sm:text-5xl md:text-6xl text-slate-900">Una sorpresa para Papá...</h1>
+        <p class="text-blue-800/90 mt-4 text-lg sm:text-xl font-semibold">Nuestro Superhéroe Favorito</p>
+        <div class="my-10">
+            <!-- Icono de Superman actualizado -->
+            <img src="https://ia800601.us.archive.org/31/items/person_people_avatar_man_boy_glasses_icon_131369/scifi_superman_icon_157468.png" alt="Icono de Superhéroe" class="w-24 h-24 sm:w-28 sm:h-28 superman-fly inline-block">
+        </div>
+        <button id="openLetterButton" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/50 hover:bg-blue-700 transition-transform transform hover:scale-105 duration-300 text-lg">
+            Abrir Sorpresa
+        </button>
+    </div>
+
+    <!-- Tarjeta con la Dedicatoria -->
+    <div id="letterCard" class="card-deluxe shadow-2xl rounded-2xl max-w-2xl w-full p-6 sm:p-8 md:p-10 lg:p-12 mx-auto my-8 border-t-4 hidden relative">
+        <!-- Botón de Control de Música -->
+        <button id="music-control-button" class="hidden absolute top-4 right-4 text-slate-800 hover:text-black transition-colors z-20">
+            <div id="play-icon" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3V3z" /></svg>
+            </div>
+            <div id="pause-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" clip-rule="evenodd" /></svg>
+            </div>
+        </button>
+
+        <header id="letterHeader" class="text-center mb-8 hidden">
+            <h1 class="font-dancing-script text-4xl sm:text-5xl text-slate-900">Para nuestro querido Papá, Leopoldo</h1>
+            <p class="text-slate-800/80 mt-2 text-base sm:text-lg tracking-wider">¡Feliz Día, Superpapá!</p>
+        </header>
+
+        <main id="letterBody" class="text-slate-800 text-base sm:text-lg leading-relaxed text-justify italic">
+            <div id="section-1" class="letter-section hidden"><p class="mb-6">Querido Papá, hoy queremos darte las gracias por ser nuestra guía y nuestro apoyo incondicional en cada momento. Eres la persona que siempre está ahí, con el consejo justo y el abrazo que todo lo cura.</p></div>
+            <div id="section-2" class="letter-section hidden"><p class="mb-6">Con tu ejemplo, nos enseñaste que los verdaderos superpoderes son la honestidad, el esfuerzo y un amor por la familia que todo lo puede. Eres la prueba de que no se necesita una capa para ser un héroe.</p></div>
+            <div id="section-3" class="letter-section hidden"><p class="mb-6">Cada uno de tus consejos ha sido un faro en nuestro camino y cada uno de tus sacrificios, una lección de amor que atesoramos en el corazón. Gracias por construir tantos recuerdos inolvidables a nuestro lado.</p></div>
+            <!-- Primera imagen -->
+            <div id="section-4" class="letter-section hidden text-center">
+                <img src="https://ia600102.us.archive.org/30/items/whats-app-image-2025-06-11-at-5.28.18-pm/WhatsApp%20Image%202025-06-11%20at%205.28.18%20PM.jpeg" alt="Recuerdo familiar con papá" class="w-full max-w-md mx-auto rounded-lg shadow-xl border-4 border-blue-800/50 photo-reveal-animation my-4">
+                <p class="text-slate-800 font-semibold mt-2">Nuestros momentos de superhéroe, capturados para siempre.</p>
+            </div>
+             <!-- Segunda imagen -->
+            <div id="section-5" class="letter-section hidden text-center">
+                <img src="https://ia600906.us.archive.org/23/items/whats-app-image-2025-06-11-at-5.29.20-pm_202506/WhatsApp%20Image%202025-06-11%20at%205.29.20%20PM.jpeg" alt="Papá con sus nietos" class="w-full max-w-md mx-auto rounded-lg shadow-xl border-4 border-red-800/50 photo-reveal-animation my-4">
+                <p class="text-slate-800 font-semibold mt-2">Tu legado de amor continúa con cada generación.</p>
+            </div>
+            <div id="section-6" class="letter-section hidden"><p class="text-center font-semibold text-red-800 mb-4 text-base sm:text-lg">Esperamos que este pequeño detalle te recuerde cuánto te amamos y lo inmensamente importante que eres para todos nosotros.</p></div>
+        </main>
+        
+        <!-- Zona Interactiva para continuar -->
+        <div id="interactive-zone" class="text-center mt-4">
+            <div id="continue-container" class="hidden"><button id="continue-button" class="transition-transform transform hover:scale-110">
+                <!-- Icono de Papá (Actualizado) -->
+                <img src="https://archive.org/download/person_people_avatar_man_boy_glasses_icon_131369/person_people_avatar_man_boy_glasses_icon_131369.png" alt="Continuar" class="w-14 h-14 mx-auto rounded-full border-2 border-slate-800">
+                <span class="text-slate-700 text-sm mt-1">Toca para continuar</span>
+            </button></div>
+        </div>
+
+        <footer id="letterFooter" class="text-center mt-8 hidden">
+            <p class="font-dancing-script text-3xl sm:text-4xl text-slate-900">Con todo nuestro amor,</p>
+            <div class="text-slate-800 mt-2 text-lg">
+                <p class="font-semibold">Tus hijos que te quieren mucho,</p>
+                <p>Edgar, Yubitza y Neptaly.</p>
+                <p class="font-semibold mt-2">Y de tus nietos,</p>
+                <p>Cristian, Katy, Sofía y el pequeño Liam.</p>
+            </div>
+        </footer>
+
+        <!-- Botón Final (Actualizado) -->
+        <div id="final-button-container" class="hidden text-center mt-8">
+             <button id="close-envelope-button" class="bg-blue-800 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-900/50 hover:bg-blue-700 transition-transform transform hover:scale-105 duration-300 text-lg">Sellar la carta</button>
+        </div>
+    </div>
+    
+    <!-- Animación del sobre final (Actualizado) -->
+    <div id="envelope-container" class="hidden fixed inset-0 w-full h-full flex items-center justify-center pointer-events-none p-8">
+        <div id="envelope-overlay" class="w-64 h-64 relative">
+             <img src="https://archive.org/download/mail_envelope_send_icon_231592/mail_envelope_send_icon_231592.png" alt="Sobre sellado" class="w-full h-full object-contain">
+        </div>
+    </div>
+    
+    <script>
+        // Declaración de constantes para los elementos del DOM
+        const openButton = document.getElementById('openLetterButton');
+        const introContainer = document.getElementById('introContainer');
+        const letterCard = document.getElementById('letterCard');
+        const letterHeader = document.getElementById('letterHeader');
+        const letterFooter = document.getElementById('letterFooter');
+        const continueContainer = document.getElementById('continue-container');
+        const continueButton = document.getElementById('continue-button');
+        const interactiveZone = document.getElementById('interactive-zone');
+        const finalButtonContainer = document.getElementById('final-button-container');
+        const closeEnvelopeButton = document.getElementById('close-envelope-button');
+        const envelopeContainer = document.getElementById('envelope-container');
+        const envelopeOverlay = document.getElementById('envelope-overlay');
+        const backgroundMusic = document.getElementById('background-music');
+        const musicControlButton = document.getElementById('music-control-button');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+
+        const letterSections = document.querySelectorAll('.letter-section');
+        let currentSectionIndex = 0;
+        let musicStarted = false;
+
+        // Función para revelar las secciones de la carta una por una
+        function revealNextPart() {
+            if (currentSectionIndex < letterSections.length) {
+                const section = letterSections[currentSectionIndex];
+                section.classList.remove('hidden');
+                // La animación se aplica desde el CSS
+                if (!section.querySelector('img')) {
+                    section.classList.add('reveal-block-animation');
+                }
+                currentSectionIndex++;
+            } else {
+                // Muestra los elementos finales cuando se terminan las secciones
+                letterFooter.classList.remove('hidden');
+                letterFooter.classList.add('reveal-block-animation');
+                
+                finalButtonContainer.classList.remove('hidden');
+                finalButtonContainer.classList.add('reveal-block-animation');
+                
+                // Oculta completamente la zona del botón "continuar"
+                interactiveZone.classList.add('hidden'); 
+            }
+        }
+
+        // Evento para el botón inicial "Abrir Sorpresa"
+        openButton.addEventListener('click', () => {
+            if (!musicStarted) {
+                // Intenta reproducir la música, manejando errores si el navegador lo bloquea
+                backgroundMusic.play().catch(e => console.error("Error al reproducir audio:", e));
+                musicStarted = true;
+                musicControlButton.classList.remove('hidden');
+            }
+
+            introContainer.classList.add('fade-out-exit');
+            introContainer.addEventListener('animationend', () => {
+                introContainer.classList.add('hidden');
+                letterCard.classList.remove('hidden');
+                letterCard.classList.add('fade-in-start');
+                
+                // Muestra la cabecera, el primer texto y el botón de continuar
+                letterHeader.classList.remove('hidden');
+                letterHeader.classList.add('reveal-block-animation');
+                revealNextPart(); // Muestra la primera sección
+                continueContainer.classList.remove('hidden');
+                continueContainer.classList.add('reveal-block-animation');
+            }, { once: true });
+        });
+        
+        // Evento para el control de la música
+        musicControlButton.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(e => console.error("Error al reproducir audio:", e));
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                backgroundMusic.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        });
+
+        // Evento para continuar la lectura de la carta
+        continueButton.addEventListener('click', () => {
+            revealNextPart();
+        });
+
+        // Evento para cerrar la carta y mostrar la animación del sobre
+        closeEnvelopeButton.addEventListener('click', () => {
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+            letterCard.classList.add('card-close-animation');
+            letterCard.addEventListener('animationend', () => {
+                envelopeContainer.classList.remove('hidden');
+
+                // Escucha el final de la animación del sobre para reiniciar
+                envelopeOverlay.addEventListener('animationend', (event) => {
+                    // Solo recarga después de la segunda animación (fadeOutExit)
+                    if (event.animationName === 'fadeOutExit') {
+                        location.reload(); 
+                    }
+                });
+
+            }, { once: true });
+        });
+
+    </script>
+</body>
+</html>
