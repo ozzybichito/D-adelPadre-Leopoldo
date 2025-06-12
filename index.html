@@ -16,9 +16,9 @@
             font-family: 'Dancing Script', cursive;
         }
 
-        /* --- Estilo Deluxe Metálico --- */
+        /* --- Estilo Deluxe Metálico (Mejorado) --- */
         .card-deluxe {
-            background: linear-gradient(145deg, #a88d3d, #f0e68c, #a88d3d);
+            background: linear-gradient(145deg, #b2974b, #f0e68c, #c8af62);
             border-top-color: #ffd700;
             position: relative;
             overflow: hidden;
@@ -31,16 +31,29 @@
             left: -150%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(110deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 60%);
+            background: linear-gradient(110deg, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 55%);
             transform: skewX(-25deg);
-            animation: cardShine 6s infinite linear;
+            animation: cardShine 5s infinite linear;
         }
 
         @keyframes cardShine {
             from { left: -150%; }
             to { left: 150%; }
         }
-
+        
+        /* Marcos de fotos metálicos */
+        .metallic-border-blue {
+            background: linear-gradient(145deg, #1e3a8a, #93c5fd, #1e3a8a);
+            padding: 6px;
+            border-radius: 0.75rem;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .metallic-border-red {
+            background: linear-gradient(145deg, #7f1d1d, #fca5a5, #7f1d1d);
+            padding: 6px;
+            border-radius: 0.75rem;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 4px 6px rgba(0,0,0,0.3);
+        }
 
         /* ---- Animaciones ---- */
         .reveal-block-animation {
@@ -100,8 +113,8 @@
 
     <!-- Tarjeta con la Dedicatoria -->
     <div id="letterCard" class="card-deluxe shadow-2xl rounded-2xl max-w-2xl w-full p-6 sm:p-8 md:p-10 lg:p-12 mx-auto my-8 border-t-4 hidden relative">
-        <!-- Botón de Control de Música -->
-        <button id="music-control-button" class="hidden absolute top-4 right-4 text-slate-800 hover:text-black transition-colors z-20">
+        <!-- Botón de Control de Música (Reubicado) -->
+        <button id="music-control-button" class="hidden absolute top-6 left-1/2 -translate-x-1/2 text-slate-800 hover:text-black transition-colors z-20">
             <div id="play-icon" class="hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3V3z" /></svg>
             </div>
@@ -110,8 +123,8 @@
             </div>
         </button>
 
-        <header id="letterHeader" class="text-center mb-8 hidden">
-            <h1 class="font-dancing-script text-4xl sm:text-5xl text-slate-900">Para nuestro querido Papá, Leopoldo</h1>
+        <header id="letterHeader" class="text-center mb-8 mt-16 hidden">
+            <h1 class="font-dancing-script text-4xl sm:text-5xl text-slate-900 px-8">Para nuestro querido Papá, Leopoldo</h1>
             <p class="text-slate-800/80 mt-2 text-base sm:text-lg tracking-wider">¡Feliz Día, Superpapá!</p>
         </header>
 
@@ -121,12 +134,16 @@
             <div id="section-3" class="letter-section hidden"><p class="mb-6">Cada uno de tus consejos ha sido un faro en nuestro camino y cada uno de tus sacrificios, una lección de amor que atesoramos en el corazón. Gracias por construir tantos recuerdos inolvidables a nuestro lado.</p></div>
             <!-- Primera imagen -->
             <div id="section-4" class="letter-section hidden text-center">
-                <img src="https://ia600102.us.archive.org/30/items/whats-app-image-2025-06-11-at-5.28.18-pm/WhatsApp%20Image%202025-06-11%20at%205.28.18%20PM.jpeg" alt="Recuerdo familiar con papá" class="w-full max-w-md mx-auto rounded-lg shadow-xl border-4 border-blue-800/50 photo-reveal-animation my-4">
+                <div class="metallic-border-blue w-full max-w-md mx-auto photo-reveal-animation my-4">
+                    <img src="https://ia600102.us.archive.org/30/items/whats-app-image-2025-06-11-at-5.28.18-pm/WhatsApp%20Image%202025-06-11%20at%205.28.18%20PM.jpeg" alt="Recuerdo familiar con papá" class="w-full rounded-lg">
+                </div>
                 <p class="text-slate-800 font-semibold mt-2">Nuestros momentos de superhéroe, capturados para siempre.</p>
             </div>
              <!-- Segunda imagen -->
             <div id="section-5" class="letter-section hidden text-center">
-                <img src="https://ia600906.us.archive.org/23/items/whats-app-image-2025-06-11-at-5.29.20-pm_202506/WhatsApp%20Image%202025-06-11%20at%205.29.20%20PM.jpeg" alt="Papá con sus nietos" class="w-full max-w-md mx-auto rounded-lg shadow-xl border-4 border-red-800/50 photo-reveal-animation my-4">
+                 <div class="metallic-border-red w-full max-w-md mx-auto photo-reveal-animation my-4">
+                    <img src="https://ia600906.us.archive.org/23/items/whats-app-image-2025-06-11-at-5.29.20-pm_202506/WhatsApp%20Image%202025-06-11%20at%205.29.20%20PM.jpeg" alt="Papá con sus nietos" class="w-full rounded-lg">
+                </div>
                 <p class="text-slate-800 font-semibold mt-2">Tu legado de amor continúa con cada generación.</p>
             </div>
             <div id="section-6" class="letter-section hidden"><p class="text-center font-semibold text-red-800 mb-4 text-base sm:text-lg">Esperamos que este pequeño detalle te recuerde cuánto te amamos y lo inmensamente importante que eres para todos nosotros.</p></div>
@@ -134,11 +151,15 @@
         
         <!-- Zona Interactiva para continuar -->
         <div id="interactive-zone" class="text-center mt-4">
-            <div id="continue-container" class="hidden"><button id="continue-button" class="transition-transform transform hover:scale-110">
-                <!-- Icono de Papá (Actualizado) -->
-                <img src="https://archive.org/download/person_people_avatar_man_boy_glasses_icon_131369/person_people_avatar_man_boy_glasses_icon_131369.png" alt="Continuar" class="w-14 h-14 mx-auto rounded-full border-2 border-slate-800">
-                <span class="text-slate-700 text-sm mt-1">Toca para continuar</span>
-            </button></div>
+            <div id="continue-container" class="hidden">
+                <button id="continue-button" class="inline-flex flex-col items-center transition-transform transform hover:scale-110">
+                    <!-- Icono de Papá (Mejorado) -->
+                    <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-br from-slate-600 to-slate-800 shadow-md">
+                         <img src="https://archive.org/download/person_people_avatar_man_boy_glasses_icon_131369/person_people_avatar_man_boy_glasses_icon_131369.png" alt="Continuar" class="w-full h-full rounded-full bg-white p-1">
+                    </div>
+                    <span class="text-slate-700 text-sm mt-2 font-semibold">Toca para continuar</span>
+                </button>
+            </div>
         </div>
 
         <footer id="letterFooter" class="text-center mt-8 hidden">
